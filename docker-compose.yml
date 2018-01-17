@@ -1,7 +1,11 @@
 ###############################################################################
-#                          andreagaleazzi.com docker                          #
+# andreagaleazzi.com docker-compose
+# Zerbinati Francesco
+# 17/01/18
+# mariadb + nginx + php
 ###############################################################################
-version: "3.1"
+
+version: '3.4'
 services:
 
     mariadb:
@@ -15,8 +19,6 @@ services:
         - MYSQL_DATABASE=db
         - MYSQL_USER=username
         - MYSQL_PASSWORD=password
-      ports:
-        - "8083:3306"
 
     nginx:
       image: nginx:alpine
@@ -38,6 +40,4 @@ services:
       volumes:
         - ./www:/usr/share/nginx/html
         - ./conf/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
-      ports:
-          - "9000:9000"
 
