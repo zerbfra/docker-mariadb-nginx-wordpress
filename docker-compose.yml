@@ -1,0 +1,43 @@
+###############################################################################
+#                          andreagaleazzi.com docker                          #
+###############################################################################
+version: "3.1"
+services:
+
+    mariadb:
+      image: mariadb:10.1
+      container_name: mariadb
+      restart: always
+      volumes:
+        - ./mysql:/var/lib/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=db
+        - MYSQL_USER=username
+        - MYSQL_PASSWORD=password
+      ports:
+        - "8083:3306"
+
+    nginx:
+      image: nginx:alpine
+      restart: always
+      container_name: nginx
+      volumes:
+          - ./www:/usr/share/nginx/html
+          - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+          - ./conf/nginx/cloudflare.conf:/etc/nginx/cloudflare.conf
+          - ./log/nginx/:/var/log/nginx/
+          - ./conf/nginx/sites/default.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "8080:80"
+
+    php:
+      build: conf/php-fpm
+      restart: always
+      container_name: php-fpm
+      volumes:
+        - ./www:/usr/share/nginx/html
+        - ./conf/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
+      ports:
+          - "9000:9000"
+
