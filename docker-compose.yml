@@ -5,11 +5,11 @@
 # mariadb + nginx + php
 ###############################################################################
 
-version: '3.4'
+version: '2'
 services:
 
     mariadb:
-      image: mariadb:10.1
+      image: mariadb:10
       container_name: mariadb
       restart: always
       volumes:
