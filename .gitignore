@@ -1,4 +1,5 @@
-log
+log/nginx/*
+!log/nginx/.gitkeep
 
 data/mysql/*
 data/wordpress/wp-content/*
