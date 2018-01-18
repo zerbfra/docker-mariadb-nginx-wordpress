@@ -8,24 +8,24 @@
 version: '2'
 services:
 
-    mariadb:
+    db:
       image: mariadb:10
       container_name: mariadb
       restart: always
       volumes:
-        - ./mysql:/var/lib/mysql
+        - ./data/mysql:/var/lib/mysql
       environment:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-
-    nginx:
+    web-server:
       image: nginx:alpine
       restart: always
       container_name: nginx
       volumes:
-          - ./www:/usr/share/nginx/html
+          - wordpress:/var/www/html
+          - ./data/wordpress/wp-content:/var/www/html/wp-content
           - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
           - ./conf/nginx/cloudflare.conf:/etc/nginx/cloudflare.conf
           - ./log/nginx/:/var/log/nginx/
@@ -33,11 +33,15 @@ services:
       ports:
        - "${PORT}:80"
 
-    php:
-      build: conf/php-fpm
+    wordpress-php-fpm:
+      image:  wordpress:php7.2-fpm-alpine
       restart: always
       container_name: php-fpm
       volumes:
-        - ./www:/usr/share/nginx/html
+        - wordpress:/var/www/html
+        - ./data/wordpress/wp-config.php:/var/www/html/wp-config.php
+        - ./data/wordpress/wp-content:/var/www/html/wp-content
         - ./conf/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
 
+volumes:
+  wordpress:
