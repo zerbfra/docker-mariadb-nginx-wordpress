@@ -1,8 +1,8 @@
 ###############################################################################
-# andreagaleazzi.com docker-compose
+# wordpres fpm docker-compose
 # Zerbinati Francesco
 # 17/01/18
-# mariadb + nginx + php
+# mariadb + nginx + php-fpm + wordpress
 ###############################################################################
 
 version: '2'
