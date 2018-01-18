@@ -34,7 +34,7 @@ services:
         - "${PORT}:80"
 
     wordpress-php-fpm:
-      image:  wordpress:php7.2-fpm-alpine
+      build:  conf/php-fpm
       restart: always
       container_name: php-fpm
       volumes:
