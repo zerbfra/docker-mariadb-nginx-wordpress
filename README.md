@@ -12,8 +12,8 @@ Modify the .env file to change webserver port and mysql settings
 
 Data will be stored in the "data" directory:
 
-    * wp-config.php and wp-content in the wordpress directory
-    * mysql data in the mysql dir
+* wp-config.php and wp-content in the wordpress directory
+* mysql data in the mysql dir
 
 ## Cloudflare
 
