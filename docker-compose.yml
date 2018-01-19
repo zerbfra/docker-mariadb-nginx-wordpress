@@ -41,7 +41,9 @@ services:
         - wordpress:/var/www/html
         - ./data/wordpress/wp-config.php:/var/www/html/wp-config.php
         - ./data/wordpress/wp-content:/var/www/html/wp-content
+        - ./data/wordpress/phpinfo.php:/var/www/html/phpinfo.php
         - ./conf/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
+        - ./conf/php-fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
 
 volumes:
   wordpress:
