@@ -30,6 +30,7 @@ services:
         - ./conf/nginx/cloudflare.conf:/etc/nginx/cloudflare.conf
         - ./log/nginx/:/var/log/nginx/
         - ./conf/nginx/sites/default.conf:/etc/nginx/conf.d/default.conf
+        - run_vol:/var/run
       ports:
         - "${PORT}:80"
 
@@ -47,3 +48,7 @@ services:
 
 volumes:
   wordpress:
+  run_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
