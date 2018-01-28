@@ -31,13 +31,13 @@ define('ADS_ENABLED', false);
 // ** Impostazioni MySQL - È possibile ottenere queste informazioni dal proprio fornitore di hosting ** //
 
 /** Il nome del database di WordPress */
-define('DB_NAME', 'db');
+define('DB_NAME', 'wordpress');
 
 /** Nome utente del database MySQL */
-define('DB_USER', 'user');
+define('DB_USER', 'wp_user');
 
 /** Password del database MySQL */
-define('DB_PASSWORD', 'password');
+define('DB_PASSWORD', 'password_for_wp_user');
 
 /** Hostname MySQL  */
 define('DB_HOST', 'mariadb');
